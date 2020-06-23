@@ -15,6 +15,7 @@ git status
 
 git pull
 
+# Add to index:
 git add .
 
 git commit -m "mesage"
