@@ -1,27 +1,42 @@
 Github
 _________________________________________
 
-# Clone repository
+# Clone repository from GitHub to local:
 git clone
 
-# Change brange
+# Change the current branche:
 git checkout branch_name
 
-# See branches
+# Create new branch and checkout to it:
+git checkout -b branch_name
+
+# See list of branches:
 git branch
 
-# See last changes in the branch you are
+# Remove branch:
+git branch -d branch_name
+
+# See last changes in the branch you are:
 git status
 
+# Update in local the changes that are in GitHub:
 git pull
 
-# Add to index:
+# Add to index all modified or new files before commit:
 git add .
 
-# Add message of your change
-git commit -m "mesage"
+# Commit with a message:
+git commit -m "message"
 
+# Send commits to GitHub from the current branch:
 git push
 
+# Push to GitHub a newly created branch:
+git push -u origin branch_name
 
+# Merge branch1 into branch2:
+1. git checkout branch2
+2. git merge branch1
+
+# List history of commits for a file:
 git log file_name
