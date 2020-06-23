@@ -1,0 +1,22 @@
+Github
+_________________________________________
+
+# Clone repository
+git clone
+
+# Change brange
+git checkout branch_name
+
+# See branches
+git branch
+
+# See last changes in the branch you are
+git status
+
+git pull
+
+git add .
+
+git commit -m "mesage"
+
+git push
