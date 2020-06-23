@@ -22,3 +22,6 @@ git add .
 git commit -m "mesage"
 
 git push
+
+
+git log file_name
