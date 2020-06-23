@@ -18,6 +18,7 @@ git pull
 # Add to index:
 git add .
 
+# Add message of your change
 git commit -m "mesage"
 
 git push
