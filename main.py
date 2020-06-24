@@ -14,14 +14,26 @@ class general_plots:
     def line(self, data, col_list, fig_name="Plot"):
 
         
-        if all(isinstance(item, int) for item in data) == True:
-            x = data[col_list[0]]
-            y = data[col_list[1]]
-        elif all(isinstance(item, str) for item in data) == True:
-            x = data[col_list[0]]
-            y = data[col_list[1]]
-        else:
-            print('there is something wrong')
+       if type(data).__module__ == 'pandas.core.frame':
+            if all(isinstance(item, int) for item in data) == True:
+                x = data[col_list[0]]
+                y = data[col_list[1]]
+            elif all(isinstance(item, str) for item in data) == True:
+                x = data[col_list[0]]
+                y = data[col_list[1]]
+            else:
+                print('there is something wrong')
+
+        if type(data).__module__ == 'numpy':
+            if all(isinstance(item, int) for item in data) == True:
+                x = data[col_list[0]]
+                y = data[col_list[1]]
+            elif all(isinstance(item, str) for item in data) == True:
+                x = data[col_list[0]]
+                y = data[col_list[1]]
+            else:
+                print('there is something wrong')
+        
         
         print('hello')
 
