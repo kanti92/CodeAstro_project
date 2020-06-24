@@ -70,4 +70,7 @@ dd = pd.DataFrame(data, columns=['x', 'cos', 'tan', 'sin'])
 
 nb_rows_col = (1,1)
 c = general_plots(nb_rows_col)
-c.line(data,['sin','tan'], fig_name='test')
+c.line(dd,['sin','tan'], fig_name='test')
+
+if __name__ == "__main__":
+    general_plots()
