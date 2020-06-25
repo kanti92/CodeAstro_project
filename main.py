@@ -19,4 +19,4 @@ if __name__ == "__main__":
     nb_rows_col = (1,1)
     c = general_plots(nb_rows_col)
     #c.line(data1,['sin','tan'], fig_name='test')
-    c.line(data0,[1,2], fig_name='test')
+    c.line(data0,[1,2])
