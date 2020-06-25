@@ -12,9 +12,8 @@ class general_plots:
 
     def line(self, data, col_list, fig_name="Plot"):
 
-        x = data[col_list[0]]
-        y = data[col_list[1]]
-
+        x, y = self.get_components(data, col_list)
+             
         fig, ax = plt.subplots(self.nb_rows, self.nb_col, figsize=(7,7))
 
         ax.set(xlim=(0, 10), ylim=(-2, 2), xlabel='x', ylabel='y(x)',title=fig_name)
@@ -31,18 +30,38 @@ class general_plots:
         ax.legend(loc=4, ncol=1, framealpha=0.7, title='legend', markerscale=0.3)
         plt.show()
 
-        return 0
+    def get_components(self, data, col_list):
+        # Dataframe
+        if type(data) == pd.core.frame.DataFrame:
+            if all(type(elem) == int for elem in col_list) == True:
+                x = data.iloc[:,col_list[0]]
+                y = data.iloc[:,col_list[1]]
+            elif all(type(elem) == str for elem in col_list) == True:
+                x = data.loc[:,col_list[0]]
+                y = data.loc[:,col_list[1]]
+            else:
+                print('Error: the column list is not well-specified')
+        # Array or list
+        elif type(data) == np.ndarray or type(data) == list:
+            # List of tuples
+            if all(isinstance(item, tuple) for item in data):
+                x = [i[col_list[0]] for i in data]
+                y = [i[col_list[1]] for i in data]
+            else:
+                x = data[:,col_list[0]]
+                y = data[:,col_list[1]]
+        # Tuple
+        elif type(data) == tuple:
+            x = [i[col_list[0]] for i in data]
+            y = [i[col_list[1]] for i in data]
+        else:
+            sys.exit('The data format is not recognized')
+        return x, y
 
+    
     def load_data(self):
         
         return 0
-
-    def dataframe(self, data_dict):
-        #nb_col = len(data.values())
-        col_name_list = data_dict.keys() 
-        df = pd.DataFrame(data=data_dict, columns=col_name_list)
-        
-        return df
 
     def save_fig(self):
         print("save")
