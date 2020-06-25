@@ -1,3 +1,8 @@
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import pandas as pd
+
 class general_plots:
     def __init__(self, nb_rows_col):
         self.nb_rows = nb_rows_col[0]
