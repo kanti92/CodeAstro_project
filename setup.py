@@ -1,6 +1,6 @@
 from setuptools import setup
 setup(
-name= 'Ourplots',
+name= 'EasyPlots',
 version= '1.0',
 packages=
 )
