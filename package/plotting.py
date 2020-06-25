@@ -2,14 +2,17 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
+import sys
 
 class general_plots:
-    def __init__(self, nb_rows_col=[1,1], fig_size = (7,7)):
+    def __init__(self, nb_rows_col=[1,1], fig_size = (7,7), display=True, save_path=False):
         self.nb_rows    = nb_rows_col[0]
         self.nb_col     = nb_rows_col[1]
         self.nb_plot    = self.nb_rows * self.nb_col
         self.fig_size   = fig_size
         self.count_plot = 0
+        self.display = display
+        self.save_path=save_path
         #self.fig_name = "Plot"
 
     def line(self, data, col_list, xlim = [0,10], ylim=[0,10], xlabel = 'X', ylabel = 'Y'):
@@ -30,7 +33,10 @@ class general_plots:
             ax.set_xlabel('X', fontsize=18)
             ax.set_ylabel('Y', fontsize=18)
             ax.legend(loc=4, ncol=1, framealpha=0.7, title='legend', markerscale=0.3)
-            plt.show()
+            if self.display:
+                plt.show()
+            if self.save_path:
+                self._save_fig(fig, self.save_path)
         
         # Multiple plots
         else:
@@ -50,8 +56,6 @@ class general_plots:
                 if self.count_plot == self.nb_plot:
                     self._plot_grid()
                 
-    
-
 
     def _plot_grid(self):
         fig, axs = plt.subplots(self.nb_rows, self.nb_col, figsize=self.fig_size)
@@ -59,7 +63,10 @@ class general_plots:
             for col in range(self.nb_col):
                 axs[col].set(xlim=self.xlims[col], ylim=self.ylims[col], xlabel=self.xlabels[col], ylabel=self.ylabels[col])
                 axs[col].plot(self.xs[col], self.ys[col], c='red', linestyle='-', alpha = 0.8, label='sin', linewidth=2)
-            fig.show()
+            if self.display:
+                fig.show()
+            if self.save_path:
+                self._save_fig(fig, self.save_path)
         else:
             count = 0
             for row in range(self.nb_rows):
@@ -67,10 +74,11 @@ class general_plots:
                     axs[row,col].set(xlim=self.xlims[count], ylim=self.ylims[count],xlabel=self.xlabels[count], ylabel=self.ylabels[count])
                     axs[row,col].plot(self.xs[count], self.ys[count], c='red', linestyle='-', alpha = 0.8, label='sin', linewidth=2)
                     count = count + 1
-            fig.show()
+            if self.display:
+                fig.show()
+            if self.save_path:
+                self._save_fig(fig, self.save_path)
                 
-
-
     def _get_components(self, data, col_list):
         # Dataframe
         if type(data) == pd.core.frame.DataFrame:
@@ -99,11 +107,6 @@ class general_plots:
             sys.exit('The data format is not recognized')
         return x, y
 
-    
-    def load_data(self):
-        
+    def _save_fig(self, fig, path):
+        fig.savefig(path)
         return 0
-
-    def save_fig(self):
-        print("save")
-        return 
