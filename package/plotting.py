@@ -16,7 +16,21 @@ class general_plots:
         #self.fig_name = "Plot"
 
     def line(self, data, col_list, xlim = [0,10], ylim=[0,10], xlabel = 'X', ylabel = 'Y'):
-        self.type_plot = "line"
+        """
+        Define the figure containing line plots and plot if single one
+
+        Args:
+        =====
+            Mandatory:
+                data (numpy array | tuple | list | dataframe): contains the data to plot
+                col_list (list): list of integers or strings (dataframes) corresponding to the indices of the data to plot )
+            Optional:
+                xlim:
+                ylim:
+                xlabel:
+                ylabel:
+        """
+        #self.type_plot = "line"
         x, y = self._get_components(data, col_list)
 
         # Single plot
@@ -57,8 +71,23 @@ class general_plots:
                     self._plot_grid()
                 
 
-    def histogram(self, data, col_list, bins, xlim = [0,10], ylim=[0,10], xlabel = 'X', ylabel = 'Y'):
-        self.type_plot = "histogram"
+    def histogram(self, data, col_list, bins=50, xlim = [0,10], ylim=[0,10], xlabel = 'X', ylabel = 'Y'):
+        """
+        Define the figure containing histograms
+
+        Args:
+        =====
+            Mandatory:
+                data (numpy array | tuple | list | dataframe): contains the data to plot
+                col_list (list): list of integers or strings (dataframes) corresponding to the indices of the data to plot )
+            Optional:
+                bins: 
+                xlim:
+                ylim:
+                xlabel:
+                ylabel:
+        """
+        #self.type_plot = "histogram"
         x = self._get_components(data, col_list)
         # Single plot
         if self.nb_plot == 1:
@@ -80,6 +109,9 @@ class general_plots:
         
 
     def _plot_grid(self):
+        """
+        Plot in case of several plots
+        """
         fig, axs = plt.subplots(self.nb_rows, self.nb_col, figsize=self.fig_size)
         if self.nb_rows == 1:
             for col in range(self.nb_col):
@@ -102,16 +134,19 @@ class general_plots:
                 self._save_fig(fig, self.save_path)
                 
     def _get_components(self, data, col_list):
+        """
+        Split the data into the requested components 
+        """
         # Dataframe
         if type(data) == pd.core.frame.DataFrame:
             if all(type(elem) == int for elem in col_list) == True:
                 x = data.iloc[:,col_list[0]]
-                if self.type_plot == "line":
-                    y = data.iloc[:,col_list[1]]
+                #if self.type_plot == "line":
+                y = data.iloc[:,col_list[1]]
             elif all(type(elem) == str for elem in col_list) == True:
                 x = data.loc[:,col_list[0]]
-                if self.type_plot == "line":
-                    y = data.loc[:,col_list[1]]
+                #if self.type_plot == "line":
+                y = data.loc[:,col_list[1]]
             else:
                 print('Error: the column list is not well-specified')
         # Array or list
@@ -119,25 +154,28 @@ class general_plots:
             # List of tuples
             if all(isinstance(item, tuple) for item in data):
                 x = [i[col_list[0]] for i in data]                
-                if self.type_plot == "line":
-                    y = [i[col_list[1]] for i in data]
+                #if self.type_plot == "line":
+                y = [i[col_list[1]] for i in data]
             else:
                 x = data[:,col_list[0]]
-                if self.type_plot == "line":
-                    y = data[:,col_list[1]]
+                #if self.type_plot == "line":
+                y = data[:,col_list[1]]
         # Tuple
         elif type(data) == tuple:
             x = [i[col_list[0]] for i in data]                
-            if self.type_plot == "line":
-                y = [i[col_list[1]] for i in data]
+            #if self.type_plot == "line":
+            y = [i[col_list[1]] for i in data]
         else:
             sys.exit('The data format is not recognized')
         
-        if self.type_plot == "line":
-            return x, y
-        else:
-            return x
+        #if self.type_plot == "line":
+        return x, y
+        #else:
+            #return x
 
     def _save_fig(self, fig, path):
+        """
+        Save the figure
+        """
         fig.savefig(path)
         return 0
