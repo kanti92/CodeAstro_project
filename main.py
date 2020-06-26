@@ -20,4 +20,5 @@ if __name__ == "__main__":
     #c.line(data2,[1,2], xlim=[0,1])
     #
     c.line(data0,[1,2], xlim=[0,1])
+
     #c.histogram(data0, [1], bins=100, xlim=[0,1])
