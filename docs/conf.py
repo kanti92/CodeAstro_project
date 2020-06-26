@@ -17,7 +17,7 @@ sys.path.insert(0, os.path.abspath('..'))
 
 # -- Project information -----------------------------------------------------
 
-project = 'EasyPlots'
+project = 'EasyFigs'
 copyright = '2020, Carles Cantero & Maxime Quesnel'
 author = 'Carles Cantero & Maxime Quesnel'
 master_doc='index'
