@@ -19,4 +19,5 @@ if __name__ == "__main__":
     nb_rows_col = (1,1)
     c = general_plots(nb_rows_col, save_path="./test_fig.png")
     #c.line(data2,[1,2], xlim=[0,1])
-    c.line(data2,[1,2], xlim=[0,1])
+    #c.line(data2,[1,2], xlim=[0,1])
+    c.histogram(data0, [1], bins=100, xlim=[0,1])

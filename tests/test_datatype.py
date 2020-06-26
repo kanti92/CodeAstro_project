@@ -6,7 +6,7 @@ import pytest
 @pytest.fixture
 def data_init():
     """
-    Initialize the data forthe different methods
+    Initialize the data for the different methods
     """
     x  = np.linspace(0, 10, 1000)
     y1 = np.cos(x)
